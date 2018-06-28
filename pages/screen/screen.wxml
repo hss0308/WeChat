@@ -1,0 +1,59 @@
+<view class='screen-page'>
+  <view class='screen-top'></view>
+  <view class='screen-panel flex-center'>
+    <view class='screen-range'>
+      <view class='flex-wrap flex-direction-col'>
+        <view class='flex-item flex-wrap flex-direction-row'>
+          <view class='flex-item'>
+            时间
+          </view>
+          <view class='flex-item' style='flex-grow:3;'>
+            <picker mode="date" name='beginTime' value="{{beginTime}}"  end="{{endTime}}" bindchange="bindDateChange">
+              <view class="flex-item flex-wrap flex-direction-row">
+                <view class='flex-item' style='flex-grow:123;'>
+                  <text class='bill-name'>{{beginTime}}</text>
+                </view>
+              </view>
+            </picker>
+          </view>
+          <view class='flex-item flex-center'>
+            至
+          </view>
+          <view class='flex-item' style='flex-grow:3;'>
+            <picker mode="date" name='endTime' value="{{endTime}}" start="{{beginTime}}" end="2999-01-01" bindchange="bindEndDateChange">
+              <view class="flex-item flex-wrap flex-direction-row">
+                <view class='flex-item' style='flex-grow:123;'>
+                  <text class='bill-name'>{{endTime}}</text>
+                </view>
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class='flex-item flex-wrap flex-direction-row' style='padding-top:90rpx;'>
+          <view class='flex-item'>
+            金额
+          </view>
+          <view class='flex-item' style='flex-grow:3;'>
+            <input class='screen-input' type='digit' name='smoney' bindinput='getSmoney' value='{{smoney}}'></input>
+          </view>
+          <view class='flex-item flex-center'>
+            至
+          </view>
+          <view class='flex-item' style='flex-grow:3;'>
+            <input class='screen-input' type='digit' name='emoney' bindinput='getEmoney' value='{{emoney}}'></input>
+          </view>
+        </view>
+        <view class='flex-item flex-wrap flex-direction-row screen-bottom'>
+          <view class='flex-item flex-center' bindtap='getreset'>
+            <text class='bill-name'>重置</text>
+          </view>
+          <view class='flex-item flex-center' bindtap='getEnsure1'>
+            <text class='bill-name'>确认</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='under-bottom'></view>
+  <view class='under-left'></view>
+</view>

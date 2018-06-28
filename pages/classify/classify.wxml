@@ -1,0 +1,51 @@
+<view class='my-page'>
+  <view class='myTop my-bg-color-shadow'>
+    <view class='sp-top-80'>
+      <view class='search-input-type my-top-tep' style='margin:0 30rpx;'>
+        <view class='flex-wrap flex-direction-row top' bindtap='getResultPage' style='height:60rpx;'>
+          <view class='flex-item flex-center'>
+            <image class='img-pic-search' src='/image/search_icon@2x.png' />
+          </view>
+          <view class='flex-item flex-left' style='flex-grow:6;'>
+            <text class='my-font-28 font-color-999'>单品/商家</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='flex-wrap flex-direction-row'>
+    <view class='flex-item my-bg-f8f'>
+      <scroll-view scroll-y='true' style="height: {{scrollHeight+minTemp}}px;" bindscroll="myScroll" scroll-into-view="{{first_id_ck}}" scroll-top='{{scrollTop}}'>
+        <view class='flex-wrap flex-direction-col'>
+          <block wx:if='{{firstInfo.length>0}}'>
+            <block wx:for='{{firstInfo}}' wx:key='*first'>
+              <view class="flex-item  my-scroll-top flex-center {{first_id_ck==item.id?'my-bg-fff':'my-bg-f8f'}} my-ck2" bindtap='getmyFirstCk' data-id='{{item.id}}' data-index='{{index}}'>
+                <text class="my-font-30 {{first_id_ck==item.id?'font-color-ba8':'font-color-666'}}">{{item.name}}</text>
+              </view>
+            </block>
+          </block>
+        </view>
+      </scroll-view>
+    </view>
+    <view class='flex-item my-bg-fff' style='flex-grow:5;'>
+      <scroll-view scroll-y='true' style="height: {{scrollHeight+minTemp}}px;">
+        <view class='flex-wrap flex-direction-row item-wrap' style='padding:50rpx 2rpx;'>
+          <block wx:if='{{secondInfo.length>0}}'>
+            <block wx:for='{{secondInfo}}' wx:key='*second'>
+              <view class='flex-none flex-left item-pad-20' bindtap='getResultPage' data-name='{{item.name}}'>
+                <view class='flex-wrap flex-direction-col'>
+                  <view class='flex-item flex-center'>
+                    <image class='img-pic-150 img-border' src='{{item.picUrlList}}'></image>
+                  </view>
+                  <view class='flex-item flex-center'>
+                    <text class='my-font-28 font-color-666'>{{item.name}}</text>
+                  </view>
+                </view>
+              </view>
+            </block>
+          </block>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>

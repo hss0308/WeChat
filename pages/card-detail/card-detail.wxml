@@ -1,0 +1,18 @@
+<import src="../../template/card-temp.wxml" />
+
+<view class='page-f8f'>
+  <block wx:if="{{cardInfo.status=='AVAILABLE'}}">
+    <block wx:if='{{cardInfo.fetchFlag}}'>
+      <template is="card-mydetail-tp" data="{{...cardInfo}}" />
+    </block>
+    <block wx:else>
+      <template is="card-status-un-tp" data="{{...cardInfo}}" />
+    </block>
+  </block>
+  <block wx:elif="{{cardInfo.status=='EXPIRE'}}">
+    <template is="card-expire-tp" data="{{...cardInfo}}" />
+  </block>
+  <block wx:elif="{{cardInfo.status=='CONSUMED'}}">
+    <template is="card-used-tp" data="{{...cardInfo}}" />
+  </block>
+</view>

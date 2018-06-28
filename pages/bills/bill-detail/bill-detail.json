@@ -1,0 +1,8 @@
+{
+  "enablePullDownRefresh": false,
+  "disableScroll": true,
+  "navigationBarTitleText": "账单详情",
+  "usingComponents": {
+    "zan-toptips": "../../../dist/toptips/index"
+  }
+}

@@ -1,0 +1,31 @@
+<import src="../../template/card-temp.wxml" />
+
+
+<view class='page'>
+  <view class="flex-wrap flex-direction-row swiper-tab myTop">
+    <view class="flex-item flex-center" data-current="1" bindtap="clickTab">
+      <text class="my-font-30 {{activeIndex==1?'active':'font-color-333'}}">未使用</text>
+    </view>
+    <view class="flex-item flex-center" data-current="2" bindtap="clickTab">
+      <text class="my-font-30 {{activeIndex==2?'active':'font-color-333'}}">历史</text>
+    </view>
+  </view>
+  <scroll-view scroll-y='true' style="height: {{scrollHeight+minTemp}}px;" bindscrolltolower="loadMore" enable-back-to-top='true'>
+    <block wx:if='{{cardInfo.length > 0}}'>
+      <block wx:for='{{cardInfo}}' wx:key='*cardList'>
+        <view class='flex-item item-range' wx:if='{{activeIndex==1}}'>
+          <template is="my-card-tp" data="{{...item}}" />
+        </view>
+        <view class='flex-item item-range' wx:elif='{{activeIndex==2}}'>
+          <template is="my-his-tp" data="{{...item}}" />
+        </view>
+      </block>
+    </block>
+    <view class="foot-bottom" hidden="{{hideBottom}}">
+      <view class='my-font-32 font-color-666'>{{loadMoreData}}</view>
+    </view>
+    <block wx:if='{{resultShow}}'>
+     <template is="card-empty-tp" data="{{activeIndex:activeIndex}}" />
+    </block>
+  </scroll-view>
+</view>

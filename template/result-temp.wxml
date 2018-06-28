@@ -1,0 +1,139 @@
+<wxs src="module.wxs" module="tools" />
+
+<template name='filter-list-tp'>
+  <view class="flex-item filter-range" bindtap='mySelect' data-my="{{id}}" data-name='{{name}}'>
+    <text class="my-font-28 {{sort_select_id==id?'font-color-ba8':'font-color-666'}}">{{name}}</text>
+  </view>
+  <view class='flex-item filter-range'>
+    <view class='crossed'></view>
+  </view>
+</template>
+
+<template name='hot-tp'>
+  <view class='hot-top my-bg-fff'>
+    <view class='flex-wrap flex-direction-col'>
+      <view class='flex-item'>
+        <text class='my-font-28 font-color-666'>热门推荐：</text>
+      </view>
+      <view class='flex-item'>
+        <view class='flex-wrap flex-direction-row item-wrap'>
+          <block wx:for='{{hotWords}}' wx:key='*hotKeys'>
+            <view class='flex-label-item' bindtap='getTabResult' data-my='{{item}}'>
+              <text class='my-font-24 font-color-666 hot-item-name'>{{item}}</text>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<template name='his-tp'>
+  <view class='flex-wrap flex-direction-row my-bg-fff' wx:if='{{hisWords.length>0}}'>
+    <view class='flex-item his-items'>
+      <text class='my-font-28 font-color-666'>历史搜索 :</text>
+    </view>
+  </view>
+  <view class='flex-item crossed' wx:if='{{hisWords.length>0}}'></view>
+  <view class='flex-wrap flex-direction-col'>
+    <block wx:for='{{hisWords}}' wx:key='key'>
+      <view class='flex-item his-items my-bg-fff' catchtap='getSearchInfo' data-name='{{item}}'>
+        <image src='/image/history_icon@2x.png' class='his-img' style='padding-right:10rpx;'></image>
+        <text class='my-font-28 font-color-666'>{{item}}</text>
+      </view>
+      <view class='flex-item my-item-p'>
+        <view class='crossed'></view>
+      </view>
+    </block>
+    <view class='flex-item item-center'>
+      <view class='clear-bottom item-center'>
+        <view class='flex-wrap flex-direction-row top'>
+          <view class='flex-item flex-right'>
+            <image src='/image/delete_icon@2x.png' class='del-img'></image>
+          </view>
+          <view class='flex-item flex-left item-grow2' bindtap='hisclear' style='padding-left:10rpx;'>
+            <text class='my-font-28 font-color-666'>清空历史搜索</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+
+<template name='filter-Info-tp'>
+  <view class='flex-item filter-range' wx:if='{{!shop_ck}}'>
+    <template is="filter-money-tp" data="{{filterMoneys:filterMoneys}}" />
+  </view>
+  <view class='flex-item'>
+    <view class='crossed'></view>
+  </view>
+  <view class='flex-item filter-range'>
+    <view class='flex-wrap flex-direction-row item-wrap'>
+      <view class='flex-none flex-center scroll-view-item_H'>
+        <text class='my-font-28 font-color-666'>单品标签</text>
+      </view>
+      <block wx:for='{{my_filter}}' wx:key='*filter2'>
+        <block wx:if='{{filterLabels.length>0}}'>
+          <template is="filter-inster-tp" data="{{...item,filterLabels:filterLabels}}" />
+        </block>
+        <block wx:else>
+          <view class='flex-label-item' bindtap='getTabSel' data-id='{{item.id}}'>
+            <text class="hot-item-name my-font-24 font-color-666">{{item.name}}</text>
+          </view>
+        </block>
+      </block>
+    </view>
+  </view>
+  <view class='flex-item'>
+    <view class='crossed'></view>
+  </view>
+  <view class='flex-item' style='width:100%;height:80rpx;'>
+    <view class='flex-wrap flex-direction-row top'>
+      <view class='flex-item flex-center border-right' catchtap='getReset'>
+        <text class='my-font-30 font-color-666'>重置</text>
+      </view>
+      <view class='flex-item flex-center' catchtap='getEnuser'>
+        <text class='my-font-30 font-color-666'>确认</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<template name='filter-money-tp'>
+  <view class='flex-wrap flex-direction-row'>
+    <view class='flex-item flex-center'>
+      <text class='my-font-28 font-color-666'>金额</text>
+    </view>
+    <view class='flex-item' style='flex-grow:3;'>
+      <input class='my-input-border my-font-28 font-color-666 input-center' placeholder-class='my-input-border my-font-28 font-color-999 input-center' placeholder='最低价' type='number' bindinput='getlow' value='{{filterMoneys[0]}}' />
+    </view>
+    <view class='flex-item flex-center'>
+      <text class='my-font-28 font-color-666'>到</text>
+    </view>
+    <view class='flex-item' style='flex-grow:3;'>
+      <input class='my-input-border my-font-28 font-color-666 input-center' placeholder-class='my-input-border my-font-28 font-color-999 input-center' placeholder='最高价' type='number' bindinput='getup' value='{{filterMoneys[1]}}' />
+    </view>
+  </view>
+</template>
+<template name='filter-money-enpty-tp'>
+  <view class='flex-wrap flex-direction-row'>
+    <view class='flex-item flex-center'>
+      <text class='my-font-28 font-color-666'>金额</text>
+    </view>
+    <view class='flex-item' style='flex-grow:3;'>
+      <input class='my-input-border my-font-28 font-color-666 input-center' placeholder-class='my-input-border my-font-28 font-color-999 input-center' placeholder='最低价' type='number' bindinput='getlow' />
+    </view>
+    <view class='flex-item flex-center'>
+      <text class='my-font-28 font-color-666'>到</text>
+    </view>
+    <view class='flex-item' style='flex-grow:3;'>
+      <input class='my-input-border my-font-28 font-color-666 input-center' placeholder-class='my-input-border my-font-28 font-color-999 input-center' placeholder='最高价' type='number' bindinput='getup' />
+    </view>
+  </view>
+</template>
+<template name='filter-inster-tp'>
+  <view class='flex-label-item' bindtap='getTabSel' data-id="{{id}}" style="background: {{tools.getFlag(filterLabels,id)?'#f9f7e8':''}}">
+    <text class="hot-item-name my-font-24 {{tools.getFlag(filterLabels,id)?'font-color-ba8':'font-color-666'}}">{{name}}</text>
+  </view>
+</template>

@@ -1,0 +1,57 @@
+<import src="../../template/shop-temp.wxml" />
+<import src="../../template/index-temp.wxml" />
+<import src="../../template/card-temp.wxml" />
+
+<view class='page'>
+  <view class='sp-top-220 font-color-fff myTop'>
+    <template is='shop-info-tp' data='{{...shopInfo,marqueeDistance:marqueeDistance,size:size}}' />
+  </view>
+  <view class='box-shadow-in myTop'></view>
+  <template is='shop-search-tp' data='{{tabs:tabs,activeIndex:third_index}}' />
+  <view class='person_box'>
+    <view class="phone_select" hidden='{{selectItem}}' style='height: {{scrollHeight+minTemp}}px;' catchtap='listTap'>
+      <view class='phone_item' catchtap='getHold'>
+        <view class='flex-wrap flex-direction-col top'>
+          <block wx:for='{{filter_sort}}' wx:key='*filter'>
+            <template is="index-filter-tp" data="{{...item,sort_select_id:sort_select_id}}" />
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+  <scroll-view scroll-y='true' style="height: {{scrollHeight+minTemp}}px;" bindscrolltolower="loadMore" enable-back-to-top='true'>
+    <view class="flex-wrap flex-direction-col {{itemList.length>0?'':'top'}}">
+      <block wx:if='{{itemList.length>0}}'>
+        <block wx:for='{{itemList}}' wx:key='*shopList'>
+          <view class='flex-item item-range' wx:if='{{activeIndex==0}}'>
+            <template is="index-list-tp" data="{{...item}}" />
+          </view>
+          <view class='flex-item my-card-tp' wx:elif='{{activeIndex==1}}'>
+            <template is="card-shop-list-tp" data="{{...item,drawIds:drawIds}}" />
+          </view>
+          <view class='flex-item item-range' wx:elif='{{activeIndex==2}}'>
+            <template is="shop-infoDec-tp" data="{{...shopInfo}}" />
+          </view>
+        </block>
+      </block>
+      <block wx:if="{{resultShow}}">
+        <block wx:if='{{activeIndex==0}}'>
+          <template is='shop-sp-empty-tp' />
+        </block>
+        <block wx:if='{{activeIndex==1}}'>
+          <template is='coupon-empty-tp' />
+        </block>
+        <block wx:if='{{activeIndex==2}}'>
+          <view class='my-item-p'>
+            <template is="shop-infoDec-tp" data="{{...shopInfo}}" />
+          </view>
+        </block>
+      </block>
+    </view>
+    <view class="foot-bottom" hidden="{{hideBottom}}">
+      <view class='my-font-32 font-color-666'>{{loadMoreData}}</view>
+    </view>
+  </scroll-view>
+</view>
+
+<zan-toptips id="zan-toptips" content="{{ content }}" is-show="{{ $zanui.toptips.show }}" />

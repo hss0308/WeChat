@@ -1,0 +1,20 @@
+.swiper-tab {
+  width: 100%;
+  border-bottom: 2rpx solid #ccc;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: #fff;
+}
+
+.active {
+  color: #ba8f44;
+  border-bottom: 8rpx solid #ba8f44;
+}
+
+swiper {
+  text-align: center;
+}
+
+.text-name {
+  transform: translate(8rpx, -25rpx);
+}

@@ -1,0 +1,38 @@
+<import src="../../template/index-temp.wxml" />
+<import src="../../template/shop-temp.wxml" />
+<import src="../../template/sp-list-temp.wxml" />
+<view class='page'>
+  <view class="flex-wrap flex-direction-row swiper-tab myTop">
+    <view class="flex-item flex-center" data-current="1" bindtap="clickTab">
+      <text class="my-font-30 {{activeIndex==1?'active':'font-color-333'}}">单品</text>
+    </view>
+    <view class="flex-item flex-center" data-current="2" bindtap="clickTab">
+      <text class="my-font-30 {{activeIndex==2?'active':'font-color-333'}}">商家</text>
+    </view>
+  </view>
+  <scroll-view scroll-y='true' style="height: {{scrollHeight+minTemp}}px;" bindscrolltolower="loadMore" enable-back-to-top='true' class='my-bg-fff'>
+    <block wx:if='{{collectInfo.length > 0}}'>
+      <block wx:for='{{collectInfo}}' wx:key='*cardList'>
+        <block wx:if='{{activeIndex==1}}'>
+          <template is="collect-list-tp" data="{{...item,del_id:del_id}}" />
+        </block>
+        <view wx:elif='{{activeIndex==2}}'>
+          <template is="myshop-collect-tp" data="{{...item,del_id:del_id}}" />
+        </view>
+      </block>
+    </block>
+    <view class="foot-bottom" hidden="{{hideBottom}}">
+      <view class='my-font-32 font-color-666'>{{loadMoreData}}</view>
+    </view>
+    <block wx:if='{{resultShow}}'>
+      <block wx:if='{{activeIndex==1}}'>
+        <template is="sp-empty-tp" />
+      </block>
+      <block wx:elif='{{activeIndex==2}}'>
+        <template is="shop-empty-tp" />
+      </block>
+    </block>
+  </scroll-view>
+</view>
+
+<zan-toptips id="zan-toptips" content="{{ content }}" is-show="{{ $zanui.toptips.show }}" />

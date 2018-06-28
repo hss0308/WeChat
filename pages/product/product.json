@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "单品详情",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "zan-toptips": "../../../dist/toptips/index"
+  }
+}

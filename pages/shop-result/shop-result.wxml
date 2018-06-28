@@ -1,0 +1,87 @@
+<import src="../../template/index-temp.wxml" />
+<import src="../../template/result-temp.wxml" />
+<import src="../../template/shop-temp.wxml" />
+
+<view class='page'>
+  <view class="flex-wrap flex-direction-row search-top myTop" style='width:700rpx;top:0;'>
+    <view class="flex-item search-input-type" style='flex-grow:6;height:60rpx;'>
+      <view class="flex-wrap flex-direction-row" style='width:100%;height:100%;'>
+        <view class='flex-item flex-center'>
+          <image class='img-pic-search' src='/image/search_icon@2x.png' style='margin-right:8px;'></image>
+        </view>
+        <view class='flex-item flex-left item-grow5'>
+          <input class='my-font-28 font-color-666' placeholder-class='my-font-28 font-color-999' placeholder="更多单品" value="{{searchWords}}" confirm-type='search' focus="{{inputShowed}}" bindconfirm='inputSearch' bindinput='searchValue' style='width:100%;' />
+        </view>
+        <view class="flex-item flex-center" wx:if="{{searchWords.length > 0}}" bindtap="clearInput">
+          <icon type="clear" size="14"></icon>
+        </view>
+      </view>
+    </view>
+    <view class="flex-item flex-center" hidden="{{!inputShowed}}" bindtap="hideInput">
+      <text class='my-font-32 font-color-333'>取消</text>
+    </view>
+  </view>
+  <view wx:if='{{showWords}}'>
+    <template is="hot-tp" data="{{hotWords:hotWords}}" />
+    <view class='hot-bottom'></view>
+    <template is="his-tp" data="{{hisWords:hisWords}}" />
+  </view>
+  <view wx:if='{{resultInfo}}'>
+    <view class='screen flex-wrap flex-direction-row myTop my-bg-fff'>
+      <view class='flex-item flex-center' bindtap='getscreenList'>
+        <text class="my-font-30 {{sort_ck?'font-color-ba8':'font-color-666'}}">{{filter_sort_word}}</text>
+      </view>
+      <view class='flex-item flex-center' hidden='true'>
+        <text class="my-font-30 {{shop_ck?'font-color-ba8':'font-color-666'}}">商家</text>
+      </view>
+      <view class='flex-item flex-right' catchtap='listTap'>
+        <view class='erect-border'></view>
+      </view>
+      <view class='flex-item flex-center' bindtap='getFilterInfo'>
+        <text class="my-font-30 {{my_ck?'font-color-ba8':'font-color-666'}}">筛选</text>
+        <image class='img-screen' src='/image/icon_screen@2x.png' />
+      </view>
+    </view>
+
+    <view class='person_box'>
+      <view class="phone_select" hidden='{{selectPerson}}' style='height: {{scrollHeight+minTemp}}px;' catchtap='listTap'>
+        <view class='phone_item'  catchtap='getHold'>
+          <view class='flex-wrap flex-direction-col top'>
+            <block wx:for='{{filter_sort}}' wx:key='*filter'>
+              <template is="filter-list-tp" data="{{...item,sort_select_id:sort_select_id}}" />
+            </block>
+          </view>
+        </view>
+      </view>
+      <view class="phone_select" hidden='{{selectFilter}}' style='height: {{scrollHeight+minTemp}}px;' catchtap='listTap'>
+        <view class='phone_item' catchtap='getHold'>
+          <view class='flex-wrap flex-direction-col top'>
+            <template is="filter-Info-tp" data="{{my_filter:my_filter,shop_ck:shop_ck,filterLabels:filterLabels,filterMoneys:filterMoneys}}" />
+          </view>
+        </view>
+      </view>
+    </view>
+    <scroll-view  scroll-y='true' style="height: {{scrollHeight+minTemp}}px;" bindscrolltolower="loadMore" enable-back-to-top='true' class='my-bg-fff' wx:if="{{lodingInfo.length > 0}}">
+      <view class='flex-wrap flex-direction-col item-range-top'>
+        <block wx:for='{{lodingInfo}}' wx:key='key' wx:for-item="info">
+          <block wx:if="{{info.type == 'entry'}}">
+            <view class='flex-item item-range'>
+              <template is="index-list-tp" data="{{...info}}" />
+            </view>
+          </block>
+          <block wx:if="{{info.type == 'shop'}}">
+            <template is="shop-collect-tp" data="{{...info,shop_info:shop_info}}" />
+          </block>
+        </block>
+      </view>
+      <view class="foot-bottom" hidden="{{hideBottom}}">
+        <view class='my-font-32 font-color-666'>{{loadMoreData}}</view>
+      </view>
+    </scroll-view>
+  </view>
+  <view wx:if='{{search_no}}' class='flex-wrap flex-direction-col my-bg-fff top' style='height: {{scrollHeight+minTemp}}px;'>
+    <view class='flex-item  top'>
+      <text class='my-font-32 font-color-666 flex-top-center'>抱歉，未能找到您搜索的商家或单品</text>
+    </view>
+  </view>
+</view>

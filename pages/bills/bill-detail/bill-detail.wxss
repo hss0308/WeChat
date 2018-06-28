@@ -1,0 +1,60 @@
+.bill-info {
+  padding-top: 10rpx;
+}
+
+.bill-info-img {
+  width: 100%;
+  height: 70rpx;
+}
+
+.bill-flex {
+  flex: 1;
+  display: flex;
+}
+
+.bill-go-up {
+  padding: 0 32rpx;
+  transform: translate(0,-50rpx);
+}
+
+.bill-go-up-warn {
+  padding: 0 32rpx;
+  transform: translateY(-20rpx);
+}
+
+.bill-item-no {
+  padding: 60rpx 40rpx 10rpx 40rpx;
+}
+
+.bill-no-name {
+  font-family: PingFangSC-Regular;
+  font-size: 34rpx;
+  color: #333;
+  letter-spacing: 0.03rpx;
+}
+
+.bill-time-name {
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #999;
+  letter-spacing: 0.03rpx;
+}
+
+.bill-total-cach {
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #666;
+  letter-spacing: 0.03rpx;
+}
+
+.bill-cach-range {
+  padding: 20rpx 0 40rpx 0;
+}
+
+.bill-btn {
+  width: 290rpx;
+  height: 60rpx;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 100px;
+}

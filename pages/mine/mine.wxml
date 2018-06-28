@@ -1,0 +1,49 @@
+<!--index.wxml-->
+<view class="page">
+  <view class='top-bg'></view>
+  <view class='my-panel'>
+    <view class='flex-wrap flex-direction-row my-flex-panel'>
+      <view class='flex-item flex-center'>
+        <image src='{{userInfo.avatarUrl}}' class='my-img'></image>
+      </view>
+      <view class='my-flex-center' style='flex-grow:3;'>
+        <text class='my-user'>{{userInfo.name}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='my-list'>
+    <view class='my-list-item'>
+      <view class='flex-wrap flex-direction-col my-flex-panel top'>
+        <view class='flex-item' style='height:100rpx;' bindtap='goMyCard'>
+          <view class='flex-wrap flex-direction-row top'>
+            <view class='flex-item flex-center'>
+              <image class='mine-img' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAbCAYAAAAULC3gAAAAAXNSR0IArs4c6QAAAyZJREFUSA3VV01ME1EQnnndGn6MFg9iBA8qetCDV4PxQGybqAkXxJsRDmpCWlpO6EnERNGDtkrxZDB4gxgTD2LsaoNG72rw4BlRSJQfQ5CWvnHewtZus7ssh6b6kva9mfnmzbfz5k128cNIuHbmB91CpDNEUA8VGIgwA4BjO3fgZW32J90HoE4mU7GxlgiKzM5RjWAebRVjUhpYQpsAom2l+krJnJztolLBneL+/4QQcAIFPHB6QlOPiIMI8NaUvc6bzpAmMBKK6V2AeNUpCBO+Eoqno4haxAnjpBe88aKT0U6fk/R0IhXeE46n+4XA3lIMZ6WHCQ8ojKT8k1K7m8y+C4Ib4h1uStINaLVR00qO3uhDp/cFY+nbAkWMGxsZP4CuUI+eULZsVvJxUZPV101iDgIGmBSAfu/kIZKrD4noqJuLxYY4JTT/iWDk+Rc9Gb5IIHOcmWF98NRBymVf8xVusOBdBFVr6niD8RcfDUIKOznavuXr9HyG+1Kziy8oZ/5bUBgk/F7TEOhuPju2rOT3o+3VS9MLSX6wXYYdKMDEjqu10+Dif6YdOdbW0tK3qjAFQkp4lQw356V8p9ZOg4uVjxk5zsaDiWE6EXItB+HzHw52j382d7MQyqTat+ayc79Mo92MKBJccvOmjWOSKnAlp5NBy81DiXUSKGZi7WZ/oLG6pfPRb9OmmQs1U35xf7FstyaScbDkxxD617PRV+xDVmCxqbCmpW8q5qSpsPQhmZcb9g1E33mfT7QW/9Rm6hiLdWothOgwAznN+VV5I5PpKyTGODI90VovYfkaF/QlJ0dTv9fnrzrQPb5iym5zZrijKjc/ZRS8G051f9AoGorqn7joghc4s0Oc+AJLN2dOxRw/xd8gfFbcexrVkfH1n7L6Ug2/6wSsOieJK05gXJG47pmM2ouojvF1dtsyqd12em86EiThpqjUa6s9SarFl3eDxjWxB3jTcmM6J7kQQNKINw9nlLe6cfY3LJLosYcbvsEua2bLtffkUWbQP0hok+9DZU0QcxHcUzb1ElVOQoqL4K/FKDf+1NrXYznDOe+9/uWaUlz+ADQUGBi36/DGAAAAAElFTkSuQmCC'></image>
+            </view>
+            <view class='my-flex-center' style='flex-grow:6;'>
+              <text class='my-list-item-name'>卡券</text>
+            </view>
+            <view class='my-flex-sign'>
+              <image class='my-list-sign' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAaCAYAAACD+r1hAAAAAXNSR0IArs4c6QAAAclJREFUOBGNlL9LQlEUx/P5IpsUGgJxaI+mhgYb+kXlkygIHCKw8On7G2qK/oRoUVMbGsqpoSwJtxpqLYKgURoFoSVF7XNevvDXUw+cd+695/u933PPvbyRRCJRiMfj4ZEhTWk0Gg9gz5LJpDYMxyEgFE4J+/iSYRjPsmZnJgEVBYUr4qKqqv5IJPJhR1Ak4XA46j6fb5f4WqvV8qlUytuXIElN035Q2GJYhnRHme5eJFPBSlB/2el0Bpi7UbvO5XJjVs6KbQRZpP4vSGuozRSLxQs5nwWW2DaxEs1DBwFr3NOJtW5LkESzvSEZ0sFDWRMz2/o37P1FYY9MGtdjsVh6IEG2gXRAececbWMogpBoc5LOLfQ8tAA6DfAbKhNDKVDSChvcSlkDCZQyx+4FCJccWlc7pVvn7DzNPIffezweQ3K2CplMZqparT6BeQccDIVCFVsCFzVJvY8ASoCXAX8LWKyrS/JK6/V6HkJFUZRAK7iLkM1mx1m8wd0ul2tV1/WSgFrt/wzsPCpPmuQsO88D/mwFWmOzJOSFeE70E9ftwEJyysfr9cpPYAcP8EpfZM3OVEo5ImlQxmY0GpXO9DUpaRsPA5YLGmi//XKqghNWYdIAAAAASUVORK5CYII='></image>
+            </view>
+          </view>
+        </view>
+        <view class='flex-item' style='padding:0 30rpx;'>
+          <view class='crossed'></view>
+        </view>
+        <view class='flex-item' style='height:100rpx;' bindtap='goCollect'>
+          <view class='flex-wrap flex-direction-row top'>
+            <view class='flex-item flex-center'>
+              <image class='mine-img-40' src='data:image/png;base64,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'></image>
+            </view>
+            <view class='my-flex-center' style='flex-grow:6;'>
+              <text class='my-list-item-name'>关注</text>
+            </view>
+            <view class='my-flex-sign'>
+              <image class='my-list-sign' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAaCAYAAACD+r1hAAAAAXNSR0IArs4c6QAAAclJREFUOBGNlL9LQlEUx/P5IpsUGgJxaI+mhgYb+kXlkygIHCKw8On7G2qK/oRoUVMbGsqpoSwJtxpqLYKgURoFoSVF7XNevvDXUw+cd+695/u933PPvbyRRCJRiMfj4ZEhTWk0Gg9gz5LJpDYMxyEgFE4J+/iSYRjPsmZnJgEVBYUr4qKqqv5IJPJhR1Ak4XA46j6fb5f4WqvV8qlUytuXIElN035Q2GJYhnRHme5eJFPBSlB/2el0Bpi7UbvO5XJjVs6KbQRZpP4vSGuozRSLxQs5nwWW2DaxEs1DBwFr3NOJtW5LkESzvSEZ0sFDWRMz2/o37P1FYY9MGtdjsVh6IEG2gXRAececbWMogpBoc5LOLfQ8tAA6DfAbKhNDKVDSChvcSlkDCZQyx+4FCJccWlc7pVvn7DzNPIffezweQ3K2CplMZqparT6BeQccDIVCFVsCFzVJvY8ASoCXAX8LWKyrS/JK6/V6HkJFUZRAK7iLkM1mx1m8wd0ul2tV1/WSgFrt/wzsPCpPmuQsO88D/mwFWmOzJOSFeE70E9ftwEJyysfr9cpPYAcP8EpfZM3OVEo5ImlQxmY0GpXO9DUpaRsPA5YLGmi//XKqghNWYdIAAAAASUVORK5CYII='></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

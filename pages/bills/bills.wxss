@@ -1,0 +1,47 @@
+.search-top {
+  padding: 10rpx 30rpx;
+  background: #fff;
+  z-index: 500;
+}
+
+.bill-item-top {
+  padding-top: 20rpx;
+}
+
+.panel-top {
+  padding: 0 30rpx;
+}
+
+.under-line {
+  padding-top: 20rpx;
+  border-bottom: 1rpx solid #ddd;
+}
+
+.img-opt-move {
+  transform: translate(5rpx,5rpx);
+}
+
+.bill-move {
+  transform: translate(64px, 0);
+  -ms-transform: translate(64px, 0);
+  -moz-transform: translate(64px, 0);
+  -webkit-transform: translate(64px, 0);
+  -o-transform: translate(64px, 0);
+}
+
+.bill-img-css {
+  width: 1rpx;
+  height: 80rpx;
+  border-left: 1rpx solid #eee;
+  transform: translate(-40rpx, 27rpx);
+}
+
+.bill-del-img-move {
+  transform: translate(0, -38rpx);
+}
+
+.bill-name {
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #333;
+}

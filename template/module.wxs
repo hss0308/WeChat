@@ -1,0 +1,12 @@
+var getFlag = function(array, id) {
+  var glag = false;
+  for (var i = 0; i < array.length; ++i) {
+    if (array[i] == id) {
+      glag = true
+    }
+  }
+  return glag;
+}
+module.exports = {
+  getFlag: getFlag
+};

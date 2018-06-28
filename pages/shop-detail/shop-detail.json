@@ -1,0 +1,9 @@
+{
+  "enablePullDownRefresh": false,
+  "disableScroll": true,
+  "navigationBarTitleText": "商家主页",
+  "usingComponents": {
+    "zan-toptips": "../../../dist/toptips/index",
+    "zan-noticebar": "../../dist/noticebar/index"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "我要报错",
+  "enablePullDownRefresh": false,
+  "disableScroll": true,
+  "usingComponents": {
+    "zan-toptips": "../../dist/toptips/index"
+  }
+}

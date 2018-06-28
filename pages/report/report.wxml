@@ -1,0 +1,26 @@
+<view class='my-top'>
+  <view class='flex-wrap flex-direction-col top'>
+    <checkbox-group bindchange="checkboxChange">
+      <label class="flex-item flex-left" wx:for="{{entryList}}" wx:key='*entry'>
+        <view class='my-item'>
+          <checkbox value="{{item.key}}" />
+          <text class='my-font-28 font-color-333' style='margin:10px;'>{{item.label}}</text>
+        </view>
+      </label>
+    </checkbox-group>
+    <view class='flex-label' style='padding:40rpx 0 0 30rpx;'>
+      <text class='my-font-28 font-color-333'>其他问题：</text>
+    </view>
+    <view class='flex-label' style='padding-left:30rpx;'>
+      <textarea placeholder='请输入…' placeholder-class='input-name' class='input-name-block my-textarea textarea-border' fixed='true' style='width:600rpx;height: 205rpx;' bindinput='getMyText'>
+      </textarea>
+    </view>
+     <view class='my-btn flex-center' style='align-self: center;'>
+        <view class='my-btn-bg flex-center' bindtap='updataInfo'>
+          <text class='my-font-30-m font-color-fff my-space-1 flex-center'>提交</text>
+        </view>
+      </view>
+  </view>
+</view>
+
+<zan-toptips id="zan-toptips" content="{{ content }}" is-show="{{ $zanui.toptips.show }}" />

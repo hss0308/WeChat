@@ -1,0 +1,8 @@
+{
+  "enablePullDownRefresh": false,
+  "disableScroll": true,
+  "navigationBarTitleText": "推荐",
+  "usingComponents": {
+    "zan-toptips": "../../../dist/toptips/index"
+  }
+}

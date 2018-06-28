@@ -1,0 +1,82 @@
+.top-bg {
+  width: 100%;
+  height: 142rpx;
+  background: #fadd98;
+}
+
+.my-page {
+  background-color: #f8f8f8;
+  height: 100%;
+  line-height: 1.6;
+}
+
+.my-panel {
+  width: 710rpx;
+  height: 220rpx;
+  background: #fff;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.10);
+  border-radius: 8rpx;
+  transform: translate(20rpx, -142rpx);
+}
+
+.my-flex-panel {
+  height: 100%;
+}
+
+.my-img {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 100rpx;
+}
+
+.my-user {
+  font-family: PingFangSC-Medium;
+  font-size: 32rpx;
+  color: #333;
+  letter-spacing: 0.02rpx;
+}
+
+.my-flex-center {
+  flex: 1;
+  display: flex;
+  align-self: center;
+}
+
+.my-flex-sign {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.my-list {
+  width: 710rpx;
+  height: 100%;
+  padding: 30rpx 30rpx 0 12rpx;
+  transform: translate(10rpx, -142rpx);
+}
+
+.my-list-item {
+  padding: 0 10rpx;
+  width: 690rpx;
+  height: 100%;
+  background: #fff;
+  border-radius: 8rpx;
+}
+
+.my-list-sign {
+  width: 12rpx;
+  height: 26rpx;
+}
+
+.my-list-item-img {
+  width: 36rpx;
+  height: 27rpx;
+}
+
+.my-list-item-name {
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #333;
+  letter-spacing: 0.02rpx;
+}

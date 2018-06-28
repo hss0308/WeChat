@@ -1,0 +1,162 @@
+<template name="bill-list-tp">
+  <block wx:if="{{status == 'DONE'}}">
+    <view class="flex-wrap flex-direction-col bill-item-top">
+      <view class="flex-item panel-top">
+        <view class="flex-wrap flex-direction-row" data-matindex="{{matIndex}}" bindtouchend="touchEndToDel" bindtouchstart="touchStartToDel" bindtouchmove="touchMoveToDel" style="webkit-transform:translate({{moveLeft}}px,0);-webkit-transform:translate({{moveLeft}}px,0)">
+          <view class="flex-item flex-center">
+            <image class="img-pic-150" src="{{picUrl.length>0?picUrl:'/image/default-img.png'}}"></image>
+          </view>
+          <view class="flex-item" style="flex-grow:2" bindtap="billDetail" data-id="{{id}}">
+            <view class="flex-wrap flex-direction-col">
+              <view class="flex-item">
+                <text class="my-font-36 font-color-333">{{shopName}}</text>
+              </view>
+              <view class="flex-item">
+                <text class="my-font-28 font-color-999">{{transTime}}</text>
+              </view>
+            </view>
+          </view>
+          <view class="flex-item flex-center" bindtap="billDetail" data-id="{{id}}">
+            <text class="my-font-38-m font-color-ba8">{{money}}</text>
+          </view>
+          <view class="bill-move">
+            <view class="bill-img-css"></view>
+            <view class="bill-del-img-move" bindtap="del" data-id="{{id}}" data-matindex="{{matIndex}}">
+              <image src="/image/delete_icon@2x.png" class="del-img"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="flex-item under-line"></view>
+  </block>
+  <block wx:else>
+    <view class="flex-wrap flex-direction-col bill-item-top">
+      <view class="flex-item panel-top">
+        <view class="flex-wrap flex-direction-row">
+          <view class="flex-item img-pic">
+            <image class="bill-img" src="{{picUrl.length>0?picUrl:'/image/default-img.png'}}"></image>
+          </view>
+          <view class="flex-item img-pic" style="flex-grow:3">
+            <text class="activity-time">系统处理中…</text>
+          </view>
+        </view>
+      </view>
+      <view class="flex-item under-line"></view>
+    </view>
+  </block>
+</template>
+
+<template name="bill-empty-tp">
+  <view class="flex-wrap flex-direction-col top">
+    <view class="flex-item flex-center item-grow2">
+      <image src="data:image/png;base64,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"
+        class="img-pic-295"></image>
+    </view>
+    <view class="flex-item flex-left">
+      <text class="my-font-28 font-color-ccc my-space-1">您目前还没有账单哦~</text>
+    </view>
+  </view>
+</template>
+
+<template name='bill-sp-title'>
+  <view class='flex-wrap flex-direction-row'>
+    <view class='flex-item flex-left' style='flex-grow:4;'>
+      <text class='my-font-26 font-color-999' style='letter-spacing: 0.03px;'>名称</text>
+    </view>
+    <view class='flex-item flex-center' style='flex-grow:2'>
+      <text class='my-font-26 font-color-999' style='letter-spacing: 0.03px;'>单价</text>
+    </view>
+    <view class='flex-item flex-center'>
+      <text class='my-font-26 font-color-999' style='letter-spacing: 0.03px;'>数量</text>
+    </view>
+    <view class='flex-item flex-center' style='flex-grow:3'>
+      <text class='my-font-26 font-color-999' style='letter-spacing: 0.03px;'>总价</text>
+    </view>
+  </view>
+</template>
+
+<template name='bill-sp-tp'>
+  <view class='flex-wrap flex-direction-row'>
+    <view class='flex-item flex-left' style='flex-grow:4'>
+      <text class='my-font-28 font-color-999 text' style='letter-spacing: 0.03px;'>{{name}}</text>
+    </view>
+    <view class='flex-item flex-center' style='flex-grow:2'>
+      <text class='my-font-28 font-color-999' style='letter-spacing: 0.03px;'>{{price}}</text>
+    </view>
+    <view class='flex-item flex-center'>
+      <text class='my-font-28 font-color-999' style='letter-spacing: 0.03px;'>{{num}}</text>
+    </view>
+    <view class='flex-item flex-center' style='flex-grow:3'>
+      <text class='my-font-28 font-color-999' style='letter-spacing: 0.03px;'>{{totalAmount}}</text>
+    </view>
+  </view>
+</template>
+
+<template name='bill-filter-tp'>
+  <view class='flex-item filter-range' style='padding-top:30rpx;'>
+    <template is="bill-filter-time-tp" data="{{sDate:sDate,eDate:eDate}}" />
+  </view>
+  <view class='flex-item filter-range' style='padding:30rpx 0;'>
+    <template is="bill-filter-money-tp" data="{{minAmount:smoney,maxAmount:emoney}}" />
+  </view>
+  <view class='flex-item'>
+    <view class='crossed'></view>
+  </view>
+  <view class='flex-item' style='width:100%;height:80rpx;'>
+    <view class='flex-wrap flex-direction-row top'>
+      <view class='flex-item flex-center border-right' catchtap='getReset'>
+        <text class='my-font-30 font-color-666'>重置</text>
+      </view>
+      <view class='flex-item flex-center' catchtap='getEnuser'>
+        <text class='my-font-30 font-color-666'>确认</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<template name='bill-filter-time-tp'>
+  <view class='flex-wrap flex-direction-row'>
+    <view class='flex-item flex-center'>
+      <text class='bill-name'>时间</text>
+    </view>
+    <view class='flex-item flex-center' style='flex-grow:3;'>
+      <picker mode="date" name='beginTime' value="{{sDate}}" end="{{eDate}}" bindchange="bindDateChange">
+        <view class="flex-item flex-wrap flex-direction-row top">
+          <view class='flex-item'>
+            <text class='bill-name flex-center'>{{sDate}}</text>
+          </view>
+        </view>
+      </picker>
+    </view>
+    <view class='flex-item flex-center'>
+      <text class='bill-name'>至</text>
+    </view>
+    <view class='flex-item flex-center' style='flex-grow:3;'>
+      <picker mode="date" name='endTime' value="{{eDate}}" start="{{eDate}}" end="2999-01-01" bindchange="bindEndDateChange">
+        <view class="flex-item flex-wrap flex-direction-row">
+          <view class='flex-item'>
+            <text class='bill-name flex-center'>{{eDate}}</text>
+          </view>
+        </view>
+      </picker>
+    </view>
+  </view>
+</template>
+
+<template name='bill-filter-money-tp'>
+  <view class='flex-wrap flex-direction-row'>
+    <view class='flex-item flex-center'>
+      <text class='my-font-28 font-color-666'>金额</text>
+    </view>
+    <view class='flex-item' style='flex-grow:3;'>
+      <input class='my-input-border my-font-28 font-color-666 input-center' placeholder-class='my-input-border my-font-28 font-color-999 input-center' placeholder='最低价' type='number' bindinput='getlow' value='{{minAmount}}' />
+    </view>
+    <view class='flex-item flex-center'>
+      <text class='my-font-28 font-color-666'>到</text>
+    </view>
+    <view class='flex-item' style='flex-grow:3;'>
+      <input class='my-input-border my-font-28 font-color-666 input-center' placeholder-class='my-input-border my-font-28 font-color-999 input-center' placeholder='最高价' type='number' bindinput='getup' value='{{maxAmount}}' />
+    </view>
+  </view>
+</template>

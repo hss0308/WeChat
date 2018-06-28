@@ -1,0 +1,8 @@
+{
+  "enablePullDownRefresh": false,
+  "disableScroll": true,
+  "navigationBarTitleText": "卡券",
+  "usingComponents": {
+    "zan-tab": "../../dist/tab/index"
+  }
+}

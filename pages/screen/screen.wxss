@@ -1,0 +1,54 @@
+.screen-panel {
+  width: 690rpx;
+  height: 500rpx;
+  background: #fff;
+  display: flex;
+  margin: 0 30rpx;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.20);
+  border-radius: 8px;
+}
+
+.screen-top {
+  height: 25rpx;
+  width: 100%;
+  background: #f8f8f8;
+}
+
+.screen-page {
+  background-color: #f8f8f8;
+  height: 100%;
+  line-height: 1.6;
+}
+
+.screen-range {
+  padding: 114rpx 40rpx 0 40rpx;
+}
+
+.screen-input {
+  border-bottom: 1rpx solid #ddd;
+}
+
+.bill-name {
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.screen-bottom {
+  margin-top: 100rpx;
+}
+
+.under-bottom {
+  display: flex;
+  width: 690rpx;
+  border-bottom: 1rpx solid #ddd;
+  transform: translate(30rpx, -100rpx);
+}
+
+.under-left {
+  display: flex;
+  width: 1rpx;
+  height: 100rpx;
+  border-left: 1rpx solid #ddd;
+  transform: translate(375rpx, -100rpx);
+}

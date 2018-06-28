@@ -1,0 +1,66 @@
+<import src="../../template/index-temp.wxml" />
+<import src="../../template/shop-temp.wxml" />
+
+
+<view class='page-f8f'>
+  <view class='flex-wrap flex-direction-col'>
+    <view class='flex-item index-top myTop' style='z-index:12;'>
+      <template is='index-top-tp' data='{{tabType:tabType,scrollLeft:scrollLeft,tagList:tagList,activeIndex:activeIndex,filter_ck:filter_ck}}' />
+    </view>
+    <view class='flex-item index-search crossed myTop'>
+      <template is='index-search-tp' data='{{filter_word:filter_word,my_shop_ck:my_shop_ck,filter_ck:filter_ck,shop_ck:shop_ck,sort_ck:sort_ck}}' />
+    </view>
+    <view class='person_box'>
+      <view class="phone_select" hidden='{{selectItem}}' style='height: {{scrollHeight+minTemp}}px;' catchtap='listTap'>
+        <block wx:if='{{filter_ck}}'>
+          <view class='phone_item' catchtap='getHold'>
+            <view class='flex-wrap flex-direction-col top'>
+              <block wx:for='{{filter_list}}' wx:key='*filter'>
+                <template is="index-filter-tp" data="{{...item,filter_ck:filter_ck}}" />
+              </block>
+            </view>
+          </view>
+        </block>
+        <block wx:elif='{{shop_ck}}'>
+          <view class='phone_item' catchtap='getHold'>
+            <view class='flex-wrap flex-direction-col top'>
+              <block wx:for='{{my_shop}}' wx:key='*filter'>
+                <template is="index-shop-tp" data="{{...item,my_shop_ck:my_shop_ck}}" />
+              </block>
+            </view>
+          </view>
+        </block>
+        <block wx:elif='{{sort_ck}}'>
+          <view class='phone_item' catchtap='getHold'>
+            <view class='flex-wrap flex-direction-col top'>
+              <template is="index-sort-tp" data="{{sort_list:sort_list,filterLabels:filterLabels}}" />
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class='flex-item my-bg-fff'>
+      <scroll-view scroll-y='true' style="height: {{scrollHeight+minTemp}}px;" bindscrolltolower="loadMore" enable-back-to-top='true'>
+        <view class='flex-wrap flex-direction-col'>
+          <block wx:for='{{loadInfo}}' wx:key='*loadInfoList'>
+            <view class='flex-item item-range'>
+              <block wx:if="{{'entry' == my_sk_type}}">
+                <template is="index-list-tp" data="{{...item}}" />
+              </block>
+              <block wx:elif="{{'shop' == my_sk_type}}">
+                <template is="shop-collect-tp" data="{{...item,shop_info:shop_info}}" />
+              </block>
+            </view>
+          </block>
+        </view>
+        <view class="foot-bottom" hidden="{{hideBottom}}">
+          <view class='my-font-32 font-color-666'>{{loadMoreData}}</view>
+        </view>
+        <block wx:if='{{showWords}}'>
+          <template is='index-empty-tp' />
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+  <template is="index-reflash-tp" data="{{animationData:animationData}}" />
+</view>

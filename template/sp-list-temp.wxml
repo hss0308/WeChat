@@ -1,0 +1,151 @@
+<template name='sp-list-tp'>
+  <view class='dish' style='background-color: #fff;'>
+    <view class='flex-wrap flex-direction-row'>
+      <view class='flex-item' style='flex-grow:5'>
+        <navigator url='../product/product?spId={{id}}&&shopId={{shopId}}' hover-class="none">
+          <view class='flex-wrap flex-direction-row'>
+            <view class='flex-item' style='padding-right: 10rpx;'>
+              <image src="{{picUrlList.length>0?picUrlList:'/image/default-img.png'}}" class='weui-media-box__thumb'></image>
+            </view>
+            <view class='flex-item flex-wrap flex-direction-col' style='flex-grow:2'>
+              <view class='flex-item'>
+                <text class="page__title">{{name}}</text>
+              </view>
+              <view class='flex-item'>
+                <text class="page__desc">{{price}}</text>
+              </view>
+              <block wx:if='{{recommendList.length>0}}'>
+                <view class='flex-item'>
+                  <view class='flex-wrap flex-direction-row'>
+                    <block wx:for='{{recommendList}}' wx:key='key'>
+                      <text class="page__desc">{{item}}</text>
+                    </block>
+                  </view>
+                </view>
+              </block>
+            </view>
+          </view>
+        </navigator>
+      </view>
+      <view class='flex-item'>
+        <view class='flex-wrap flex-direction-col'>
+          <view class='flex-item'>
+            <image id='tapTure' data-value='{{follow}}' data-id='{{id}}' data-shop='{{shopId}}' class='icon-img' src='/image/collection-fill.png' catchtap="onSpCollected" wx:if="{{follow}}"></image>
+            <image id='tapFalse' data-value='{{follow}}' data-id='{{id}}' data-shop='{{shopId}}' class='icon-img' catchtap="onSpCollected" wx:else src="/image/collection.png"></image>
+          </view>
+          <view class='flex-item' style='padding-top:50rpx;'>
+            <text style='float: right;'>{{saleNum}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<template name='sp-detail-tp'>
+  <view class='flex-item sp-top-140 my-bg-color'>
+    <view class='flex-wrap flex-direction-row top'>
+      <view class='flex-item flex-left item-padding-lef' style='flex-grow:1.5;'>
+        <text class='my-font-56-m font-color-ba8 my-space-1'>￥{{price}}</text>
+      </view>
+      <view class='flex-item flex-center' style='flex-grow:1.5;'>
+        <view class='flex-wrap flex-direction-col top'>
+          <view class='flex-item flex-center'>
+            <view class='flex-wrap flex-direction-row top'>
+              <view class='flex-item flex-right'>
+                <text class='my-font-30 font-color-ba8 my-space-1'>最低价</text>
+              </view>
+              <view class='flex-item flex-left'>
+                <text class='my-font-30-m font-color-666 my-space-1'>￥{{lowestPrice}}</text>
+              </view>
+            </view>
+          </view>
+          <view class='flex-item flex-center'>
+             <view class='flex-wrap flex-direction-row top'>
+              <view class='flex-item flex-right'>
+                <text class='my-font-30 font-color-ba8 my-space-1'>最高价</text>
+              </view>
+              <view class='flex-item flex-left'>
+                <text class='my-font-30-m font-color-666 my-space-1'>￥{{highestPrice}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='flex-item flex-center'>
+        <image class='img-pic-70' src="{{follow?'/image/mark_icon@2x.png':'/image/unmark_icon@2x.png'}}" bindtap='onCollected' data-value='{{follow}}' data-id='{{id}}' data-shop='{{shopId}}'></image>
+      </view>
+    </view>
+  </view>
+  <view class='flex-item' style='padding:50rpx 36rpx 24rpx 30rpx;'>
+    <text class='my-font-36 font-color-333 my-space-0 text'>{{name}}</text>
+  </view>
+  <view class='flex-item' style='padding:15rpx 30rpx;'>
+    <view class='flex-wrap flex-direction-row'>
+      <block wx:for='{{recommendList}}' wx:key='*keyList'>
+        <template is='recommend-list-tp' data='{{...item}}' />
+      </block>
+    </view>
+  </view>
+  <view class='flex-item' style='padding:0 30rpx;'>
+    <view class='crossed'></view>
+  </view>
+  <view class='flex-item' style='padding:15rpx 0 15rpx 30rpx;'>
+    <view class='flex-wrap flex-direction-row top'>
+      <view class='flex-item flex-left top' style='flex-grow:3;'>
+        <view class='flex-wrap flex-direction-row top'>
+          <view class='flex-none flex-center'>
+            <text class='my-font-32 font-color-666 my-space-0 text'>{{shopName}}</text>
+          </view>
+          <view class='flex-none flex-center'>
+            <image src='/image/VIP@2x.png' class='img-pic-tag' style='padding-left: 10rpx;' wx:if='{{authFlag}}'></image>
+          </view>
+        </view>
+      </view>
+      <view class='flex-item img-pic-80'>
+        <view class='my-bg-ba8 top my-bg-radius-30' bindtap='goShopInfo' data-shopId='{{shopId}}'>
+          <text class='my-font-28 font-color-fff my-space-0 top flex-center'>进入店铺</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='flex-item' style='padding:0 30rpx;'>
+    <view class='crossed'></view>
+  </view>
+  <view class='flex-item' style='padding:20rpx 30rpx;'>
+    <text class='my-font-28 font-color-666 my-space-1'>描述：</text>
+    <textarea class='my-font-30 font-color-080 my-shop-textarea my-space-2' disabled='true' value='{{desciption}}' fixed='true' style='width:100%;'></textarea>
+  </view>
+</template>
+
+<template name='recommend-list-tp'>
+  <view class='flex-none flex-left'>
+    <block wx:if="{{type == 'entry_price_down'}}">
+      <image src='/image/down_icon@2x.png' class='img-pic-30'></image>
+    </block>
+    <block wx:if="{{type == 'entry_new'}}">
+      <image src='/image/new_icon@2x.png' class='img-pic-30'></image>
+    </block>
+    <block wx:if="{{type == 'entry_popular_follow'}}">
+      <image src='/image/hot_icon@2x.png' class='img-pic-30'></image>
+    </block>
+    <block wx:if="{{type == 'entry_popular_sale'}}">
+      <image src='/image/icon_coupon@2x.png' class='img-pic-30'></image>
+    </block>
+  </view>
+  <view class='flex-none flex-left'>
+    <text class='my-font-26 font-color-ba8 flex-left' style='padding-left:10rpx;'>{{label}}</text>
+  </view>
+</template>
+
+<template name='sp-empty-tp'>
+  <view class='flex-wrap flex-direction-col top'>
+    <view class='flex-item flex-center'>
+      <image src='data:image/png;base64,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'
+        class='img-pic-295'></image>
+    </view>
+    <view class='flex-item flex-left'>
+      <text class='text-center' style='width: 100%;'>快去关注更多单品吧~</text>
+    </view>
+  </view>
+</template>
