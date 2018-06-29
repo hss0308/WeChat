@@ -90,7 +90,7 @@ Page({
     let ord_num = (index - 2) / 2;
     let mid_num = 0;
     if (index > 2) {
-      mid_num = 30
+      mid_num = 125
     }
     if (ord_num >= 3) {
       ord_num = 3;
